@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>sayfa3</title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="proje2.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous">
+
+<script>
+$(document).ready(function()
+{
+	var data = JSON.parse(localStorage.getItem("rows")) || [];
+
+var td1=localStorage.getItem("ad");
+var td2=localStorage.getItem("soyad");
+var td3=localStorage.getItem("tel");
+var td4=localStorage.getItem("marka");
+var td5=localStorage.getItem("model");
+var td6=localStorage.getItem("fiyat");
+
+if(td1!=null){
+var newrows = {"Ad":td1, "Soyad":td2, "Tel":td3, "Marka":td4, "Model":td5, "Fiyat":td6};
+data[data.length]=newrows;
+
+
+ var html = '<table class="table">';
+ html += '<tr>';
+ for( var j in data[0] ) {
+  html += '<th>' + j + '</th>';
+ }
+ html += '</tr>';
+ for( var i = 0; i < data.length; i++) {
+  html += '<tr>';
+  for( var j in data[i] ) {
+    html += '<td>' + data[i][j] + '</td>';
+  }
+  html += '</tr>';
+ }
+ html += '</table>';
+ document.getElementById('container').innerHTML = html;
+ }
+
+ $(s3sil).click(function()
+{
+localStorage.clear();
+});
+localStorage.setItem("rows",JSON.stringify(data));
+localStorage.setItem("ad",null);
+localStorage.setItem("soyad",null);
+localStorage.setItem("tel",null);
+localStorage.setItem("marka",null);
+localStorage.setItem("model",null);
+localStorage.setItem("fiyat",null);
+
+});
+</script>
+
+</head>
+
+<body class="s3body">
+
+ <div style="margin:250px;" class="table-box" id="container">
+ </div>
+
+<div class="sildiv">
+      <button id="btnsil" type="submit"></button>
+      <a href="sayfa3.html" id="s3sil">Delete</a>
+</div>
+<h4 class="s3sil_yazi">Kayıt Sil:</h4>
+</body>
+</html>
+
+
+
+ 
+ 

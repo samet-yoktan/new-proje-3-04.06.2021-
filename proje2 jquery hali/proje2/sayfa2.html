@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>sayfa2</title>
+	 <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="proje2.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+	
+
+$(document).ready(function()
+{
+var ad=document.getElementById("ad");//yeni değişken tanımlayıp getelementbyid ile altta oluşturdugumuz nesnelere eşitliyoruz
+var soyad=document.getElementById("soyad");
+var tel=document.getElementById("tel");
+var fiyat=document.getElementById("fiyat");
+var marka=document.getElementById("marka");
+var model=document.getElementById("model");
+
+marka.value="";//sayfa ilk yüklendiğinde marka ve model boş gelsin
+model.value="";
+
+$("#ad").attr("autocomplete", "off");//textlerin geçmişini temizleme
+$("#soyad").attr("autocomplete", "off");
+$("#tel").attr("autocomplete", "off");
+$("#fiyat").attr("autocomplete", "off");
+
+  $(marka).click(function()//marka ya tıklandığında ne yapılsın
+  {
+   //$("#adbaslik").hide(); gizlemek istediğin nesnenin id sini # ile yaz eğer id yerine class yazılmışsa . clas ismi ile çağır örnek .adbaslik
+   if (marka.selectedIndex==0)
+   {
+   var iph1=document.getElementById("model").options[0];
+   var iph2=document.getElementById("model").options[1];
+   var iph3=document.getElementById("model").options[2];
+
+   iph1.value = "11";
+   iph1.text = "11";
+
+   iph2.value = "11pro";
+   iph2.text = "11 Pro";
+
+   iph3.value = "11promax";
+   iph3.text = "11 Pro Max";
+
+   model.value="";
+   fiyat.value="";
+   }
+   else if (marka.selectedIndex==1)
+    {
+   var smsng1=document.getElementById("model").options[0];
+   var smsng2=document.getElementById("model").options[1];
+   var smsng3=document.getElementById("model").options[2];
+   
+   smsng1.value = "a01";
+   smsng1.text = "A01";
+
+   smsng2.value = "a10s";
+   smsng2.text = "A10 S ";
+
+   smsng3.value = "a20s";
+   smsng3.text = "A20 S";
+
+   model.value="";
+   fiyat.value="";
+    }
+    else if (marka.selectedIndex==2)
+    {
+   var xiaomi1=document.getElementById("model").options[0];
+   var xiaomi2=document.getElementById("model").options[1];
+   var xiaomi3=document.getElementById("model").options[2];
+   
+   xiaomi1.value = "8a";
+   xiaomi1.text = "8A";
+
+   xiaomi2.value = "redminote8";
+   xiaomi2.text = "Redmi Note 8";
+
+   xiaomi3.value = "redminote8pro";
+   xiaomi3.text = "Redmi Note 8 Pro"; 
+
+   model.value="";
+   fiyat.value="";
+    }
+  });//marka kapanış
+
+$(model).click(function()
+{
+	/*iphone*/
+  if (marka.selectedIndex==0&&model.selectedIndex==0) {fiyat.value="7500 ₺"}
+  else if (marka.selectedIndex==0&&model.selectedIndex==1) {fiyat.value="12500 ₺"}
+  else if (marka.selectedIndex==0&&model.selectedIndex==2) {fiyat.value="15500 ₺"}
+
+  /*samsung*/
+  else if (marka.selectedIndex==1&&model.selectedIndex==0) {fiyat.value="1700 ₺"}
+  else if (marka.selectedIndex==1&&model.selectedIndex==1) {fiyat.value="2000 ₺"}
+  else if (marka.selectedIndex==1&&model.selectedIndex==2) {fiyat.value="2500 ₺"}
+
+  /*xiaomi*/
+  else if (marka.selectedIndex==2&&model.selectedIndex==0) {fiyat.value="2000 ₺"}
+  else if (marka.selectedIndex==2&&model.selectedIndex==1) {fiyat.value="2500 ₺"}
+  else if (marka.selectedIndex==2&&model.selectedIndex==2) {fiyat.value="2700 ₺"}
+});//model kapanış
+
+$(s3gecis_kaydet).click(function()
+{
+  localStorage.setItem(ad.id,ad.value);
+  localStorage.setItem(soyad.id,soyad.value);
+  localStorage.setItem(tel.id,tel.value);
+  localStorage.setItem(fiyat.id,fiyat.value);	
+  localStorage.setItem(marka.id,marka.value);
+  localStorage.setItem(model.id,model.value);
+});//kaydet kapanış
+
+});
+</script>
+
+</head>
+
+<body class="s2body">
+
+<div class="box"> 
+
+<h1 class="s2baslik">SİPARİŞ VER</h1> 
+
+
+ <form action="">
+ 	  <label for="ad" id="adbaslik">Ad :</label>
+      <input id="ad" type="text"><br>
+
+      <label for="soyad" id="soyadbaslik">Soyad :</label>
+      <input id="soyad" type="text">
+
+      <label for="tel" id="telbaslik">Tel :</label>
+      <input id="tel" type="text">
+
+      <label for="marka" id="markasec">Marka :</label>
+      
+      <select id="marka">
+      	<option value="iphone">İphone</option>
+      	<option value="samsung">Samsung</option>
+      	<option value="xiaomi">Xiaomi</option>
+      </select>
+
+		<label for="model" id="modelsec">Model :</label>
+
+       <select id="model">
+      	<option value="1"></option>
+      	<option value="2"></option>
+      	<option value="3"></option>
+      </select>
+
+       <label for="fiyat" id="fiyatgoster">Fiyat :</label>
+       <input id="fiyat" type="text">
+
+       <div class="kaydetdiv">
+      <button id="giris" type="submit"></button>
+      <a href="sayfa3.html" id="s3gecis_kaydet">Kaydet</a> 	
+       </div>
+
+       <div class="listelediv">
+      <button id="giris" type="submit"></button>
+      <a href="sayfa3.html" class="s3gecis_link">Listele</a> 	
+       </div>
+      
+      <h4 id="bos"></h4>
+ </form>
+
+</div>     
+</body>
+
+</html>
